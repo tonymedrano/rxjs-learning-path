@@ -1,0 +1,18 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+
+  <input type="text" [(ngModel)]="searchString" (ngModelChange)="inputChanged($event)" placeholder="Search...">
+  <button (click)="searchString = ''">Click me!</button>
+
+  <div *ngFor="let result of results$ | async">
+    {{result.data.title | json}}
+    <div *ngIf="result.data.url">
+      <a [href]="result.data.thumbnail != 'default' && result.data.thumbnail != 'self'">
+        <img [src]="result.data.thumbnail" alt="">
+      </a>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
